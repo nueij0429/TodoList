@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import '@components/TodoItem.css';
 
 import { connect } from 'react-redux';
-import { removeTodo, toggleTodo } from '@/actions';
+//import { removeTodo, toggleTodo } from '@/actions';
+import { removeTodo, toggleTodo } from '@/reducers/todoSlice';
 
 class TodoItem extends Component {
     /*

@@ -5,6 +5,7 @@ import axios from "axios";
 const BASE_URL = import.meta.env.VITE_API_URL;
 const apiUrl = `${BASE_URL}/todos`;
 
+//Action 시작
 export const fetchAllTodos = createAsyncThunk(
     //action 이름
     "load/todos", 
@@ -37,7 +38,9 @@ export const addTodo = createAsyncThunk(
         return response.data;
     }
 );
+//Action 끝
 
+//Reducer 시작
 const initialState = {
     todos: [
         {
