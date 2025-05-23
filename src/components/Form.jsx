@@ -1,27 +1,55 @@
-import { Component } from 'react';
-import PropTypes from 'prop-types';
-import '@components/Form.css';
+import { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from 'react-redux';
+
+import "@components/Form.css";
+import { addTodo } from '@/actions';
 
 class Form extends Component {
-    render() {
-        const { mytodo, myEnter, myChange, myCreate } = this.props;
-        return (
-            <div className="form">
-                <input value={mytodo} onChange={myChange}
-                    onKeyDown={myEnter} />
-                <div className="create-button" onClick={myCreate}>
-                    추가
-                </div>
-            </div>
-        );
+  state = {
+    todo: ''
+  };
+
+  handleChange = (e) => {
+    this.setState({
+      todo: e.target.value, // input field의 다음 바뀔 값
+    });
+  };
+
+  handleCreate = () => {
+    const { todo } = this.state;
+    const newTodo = {
+      text: todo,
+      checked: false,
+    };
+    this.props.add(newTodo)
+
+    this.setState({ todo: ''});
+  };
+
+  handleEnter = (e) => {
+    // 눌려진 키가 Enter Key 이면 handleCreate 호출
+    if (e.keyCode === 13) {
+      this.handleCreate();
     }
+  };
+
+  render() {
+    const { todo } = this.state;
+    const { handleChange, handleCreate, handleEnter } = this;
+    return (
+      <div className="form">
+        <input value={todo} onChange={handleChange} onKeyDown={handleEnter} />
+        <div className="create-button" onClick={handleCreate}>
+          추가
+        </div>
+      </div>
+    );
+  }
 }
 
 Form.propTypes = {
-    mytodo: PropTypes.string,
-    myEnter: PropTypes.func,
-    myChange: PropTypes.func,
-    myCreate: PropTypes.func
+  add: PropTypes.func
 };
 
-export default Form;
+export default connect(null, { add: addTodo })(Form);

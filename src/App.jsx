@@ -15,62 +15,20 @@ class App extends Component {
     ]
   };
   //이벤트핸들러 함수 선언
-  handleChange = (e) => {
-    this.setState({
-      todo: e.target.value // input field의 다음 바뀔 값
-    });
-  }
-
-  handleCreate = () => {
-    const { todo, todos } = this.state;
-    const newTodo = {
-      id: this.id++,
-      text: todo,
-      checked: false
-    };
-
-    this.setState({
-      todos: [...todos, newTodo],
-      todo: '', // input 초기화
-    });
-  }
-  
-  handleEnter = (e) => {
-    // 눌려진 키가 Enter Key 이면 handleCreate 호출
-    if (e.keyCode === 13) {
-      this.handleCreate();
-    }
-  };
-
   handleToggle = (id) => {
     const { todos } = this.state;
     this.setState({
       todos: todos.map(todo => todo.id === id ? { ...todo, checked: !todo.checked } : todo)
     });
-  }
-
-  handleRemove = (id) => {
-    const { todos } = this.state;
-    this.setState({
-      todos: todos.filter(todo => todo.id !== id)
-    });
-  }
+  };// handleToggle
 
   render() {
-    const { todo } = this.state;
-    const { handleChange, handleCreate, handleEnter, handleToggle, handleRemove } = this;
+    const { handleToggle } = this;
 
     return (
-      <TodoListTemplate form=
-      {<Form 
-        mytodo={todo} 
-        myEnter={handleEnter} 
-        myChange={handleChange}
-        myCreate={handleCreate} />
-      }>
-        <TodoItemList 
+      <TodoListTemplate form={<Form />}>
+        <TodoItemList  
           myToggle={handleToggle}
-          myRemove={handleRemove}
           />
       </TodoListTemplate>
     );

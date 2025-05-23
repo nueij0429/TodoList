@@ -8,8 +8,8 @@ import App from '@/App.jsx'
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import { toDoReducer } from './reducers';
-//const store = createStore(toDoReducer, applyMiddleware(thunk));
 
+//const store = createStore(toDoReducer, applyMiddleware(thunk));
 const store = configureStore({
   reducer: toDoReducer,
   //middleware: getDefaultMiddleware => getDefaultMiddleware().concat(thunk)
