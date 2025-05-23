@@ -5,3 +5,17 @@ const apiUrl = `${BASE_URL}/todos`
 
 //Action type 정의
 export const FETCH_TODOS = "FETCH_TODOS";
+
+export const fetchAllTodos = () => {
+    return (dispatch) => {
+        axios.get(apiUrl) //Promise
+            .then(res => dispatch({
+                type: FETCH_TODOS,
+                payload: res.data
+            }))
+            .catch(error => {
+                console.log(error);
+                throw error;
+            });
+    }
+}; //fetchAllTodos
