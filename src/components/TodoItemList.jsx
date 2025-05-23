@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
-import TodoItem from './TodoItem';
+import TodoItem from '@components/TodoItem';
 
 class TodoItemList extends Component {
     /*
